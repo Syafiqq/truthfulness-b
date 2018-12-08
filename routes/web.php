@@ -22,7 +22,7 @@ $router->group(['namespace' => 'Counselor', 'prefix' => '/counselor'], function 
             $router->post('/login', ['middleware' => 'auth.role', 'uses' => 'Auth@postLogin', 'as' => 'counselor.auth.login.post']);
             $router->get('/lost', ['uses' => 'Auth@getLost', 'as' => 'counselor.auth.lost.get']);
             $router->post('/lost', ['middleware' => 'auth.role', 'uses' => 'Auth@postLost', 'as' => 'counselor.auth.lost.post']);
-            $router->get('/recover', ['middleware' => ['auth.role', 'valid.auth.recovery'], 'uses' => 'Auth@getRecover', 'as' => 'counselor.auth.recover.get']);
+            $router->get('/recover', ['middleware' => ['auth.role'], 'uses' => 'Auth@getRecover', 'as' => 'counselor.auth.recover.get']);
             $router->patch('/recover', ['middleware' => ['auth.role', 'valid.auth.recovery'], 'uses' => 'Auth@patchRecover', 'as' => 'counselor.auth.recover.patch']);
         });
     });
