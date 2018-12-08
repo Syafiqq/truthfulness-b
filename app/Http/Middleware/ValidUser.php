@@ -2,6 +2,7 @@
 
 use App\Eloquent\User;
 use Closure;
+use Ramsey\Uuid\Uuid;
 
 abstract class ValidUser
 {
@@ -11,11 +12,12 @@ abstract class ValidUser
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \Closure $next
+     * @param $id
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        $id = $request->route()->getParameter('id', 0);
+        $id = $request->route('id', Uuid::NIL);
         /** @var User $user */
         $user = User::where('id', '=', $id)->first();
         if (is_null($user) || (strcmp(strval($user->getAttribute('role')), $this->getRole()) !== 0))

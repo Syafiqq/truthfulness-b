@@ -2,6 +2,7 @@
 
 use App\Eloquent\User;
 use Closure;
+use Ramsey\Uuid\Uuid;
 
 class ValidStudentReportDetail
 {
@@ -15,7 +16,7 @@ class ValidStudentReportDetail
      */
     public function handle($request, Closure $next)
     {
-        $id = $request->route()->getParameter('id', 0);
+        $id = $request->route('id', Uuid::NIL);
         /** @var User $user */
         $user = User::where('id', '=', $id)->first();
         if (is_null($user))
