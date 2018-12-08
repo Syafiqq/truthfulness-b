@@ -54,25 +54,24 @@ class Answer extends Model
     {
         $analytics = [];
 
-        $analytics['rendah']['guard']          = ['min' => -0.1, 'max' => 33.3];
-        $analytics['rendah']['interval']       = '0 - 33%';
-        $analytics['rendah']['class']          = 'Rendah';
-        $analytics['rendah']['recommendation'] = 'Keterampilan perencanaan akademik <strong>%s</strong> masih kurang, perlu diperbaiki dan ditingkatkan dengan melakukan tindakan yang mendukung.';
-        $analytics['rendah']['description']    = ['key' => 'Siswa masih kurang memiliki keterampilan dalam  : ', 'value' => '(1) Menentukan pencapaian target akademik (2) menentukan tujuan akademik secara objektif (3) menentukan metode/strategi pencapaian tujuan akademik (4) mengelola waktu pelaksanaan akademik (5) mencari sumber yang dibutuhkan untuk mendukung pencapaian tujuan akademik (6) melaksaanakan tanggung jawab akademik'];
-        $analytics['sedang']['guard']          = ['min' => 33.3, 'max' => 66.6];
-        $analytics['sedang']['interval']       = '34 - 66%';
-        $analytics['sedang']['class']          = 'Sedang';
-        $analytics['sedang']['recommendation'] = 'Keterampilan perencanaan akademik <strong>%s</strong> sudah cukup, perlu ditingkatkan dengan melakukan tindakan yang mendukung.';
-        $analytics['sedang']['description']    = ['key' => 'Siswa sudah memiliki keterampilan yang cukup dalam : ', 'value' => '(1) Menentukan pencapaian target akademik (2) menentukan tujuan akademik secara objektif (3) menentukan metode/ strategi pencapaian tujuan akademik (4) mengelola waktu pelaksanaan akademik (5) mencari sumber yang dibutuhkan untuk mendukung pencapaian tujuan akademik (6) melaksaanakan tanggung jawab akademik'];
-        $analytics['tinggi']['guard']          = ['min' => 66.6, 'max' => 100.0];
-        $analytics['tinggi']['interval']       = '67 - 100%';
-        $analytics['tinggi']['class']          = 'Tinggi';
-        $analytics['tinggi']['recommendation'] = 'Keterampilan perencanaan akademik <strong>%s</strong> sudah tinggi, perlu dipertahankan dan ditingkatkan dengan melakukan tindakan yang mendukung.';
-        $analytics['tinggi']['description']    = ['key' => 'Siswa sudah memiliki keterampilan yang baik untuk : ', 'value' => '(1) Menentukan pencapaian target akademik (2) menentukan tujuan akademik secara objektif (3) menentukan metode/ strategi pencapaian tujuan akademik (4) mengelola waktu pelaksanaan akademik (5) mencari sumber yang dibutuhkan untuk mendukung pencapaian tujuan akademik (6) melaksaanakan tanggung jawab akademik'];
+        $analytics['1']['rendah']['guard']          = ['min' => -0.1, 'max' => 33.3];
+        $analytics['1']['rendah']['interval']       = '0 - 33%';
+        $analytics['1']['rendah']['class']          = 'Rendah';
+        $analytics['1']['rendah']['recommendation'] = 'Tingkat kejujuran <strong>%s</strong> masih kurang, perlu diperbaiki dan ditingkatkan dengan melakukan tindakan yang mendukung.';
+        $analytics['1']['rendah']['description']    = ['key' => 'Siswa masih kurang memiliki keterampilan dalam  : ', 'value' => '(1) Menentukan pencapaian target akademik (2) menentukan tujuan akademik secara objektif (3) menentukan metode/strategi pencapaian tujuan akademik (4) mengelola waktu pelaksanaan akademik (5) mencari sumber yang dibutuhkan untuk mendukung pencapaian tujuan akademik (6) melaksaanakan tanggung jawab akademik'];
+        $analytics['1']['sedang']['guard']          = ['min' => 33.3, 'max' => 66.6];
+        $analytics['1']['sedang']['interval']       = '34 - 66%';
+        $analytics['1']['sedang']['class']          = 'Sedang';
+        $analytics['1']['sedang']['recommendation'] = 'Tingkat kejujuran <strong>%s</strong> sudah cukup, perlu ditingkatkan dengan melakukan tindakan yang mendukung.';
+        $analytics['1']['sedang']['description']    = ['key' => 'Siswa sudah memiliki keterampilan yang cukup dalam : ', 'value' => '(1) Menentukan pencapaian target akademik (2) menentukan tujuan akademik secara objektif (3) menentukan metode/ strategi pencapaian tujuan akademik (4) mengelola waktu pelaksanaan akademik (5) mencari sumber yang dibutuhkan untuk mendukung pencapaian tujuan akademik (6) melaksaanakan tanggung jawab akademik'];
+        $analytics['1']['tinggi']['guard']          = ['min' => 66.6, 'max' => 100.1];
+        $analytics['1']['tinggi']['interval']       = '67 - 100%';
+        $analytics['1']['tinggi']['class']          = 'Tinggi';
+        $analytics['1']['tinggi']['recommendation'] = 'Tingkat kejujuran <strong>%s</strong> sudah tinggi, perlu dipertahankan dan ditingkatkan dengan melakukan tindakan yang mendukung.';
+        $analytics['1']['tinggi']['description']    = ['key' => 'Siswa sudah memiliki keterampilan yang baik untuk : ', 'value' => '(1) Menentukan pencapaian target akademik (2) menentukan tujuan akademik secara objektif (3) menentukan metode/ strategi pencapaian tujuan akademik (4) mengelola waktu pelaksanaan akademik (5) mencari sumber yang dibutuhkan untuk mendukung pencapaian tujuan akademik (6) melaksaanakan tanggung jawab akademik'];
 
         return $analytics;
     }
-
     /**
      * @return string
      */
