@@ -23,7 +23,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
             <ol class="breadcrumb">
                 <li class="active">
                     <i class="fa fa-home"></i>
-                    Dashboard
+                    Daftar siswa
                 </li>
             </ol>
         </section>
@@ -74,8 +74,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                             <th>Email</th>
                             <th>Nama</th>
                             <th>Jenis Kelamin</th>
-                            <th>Sekolah</th>
-                            <th>Kelas</th>
+                            <th>Password Recovery</th>
                             <th>Status</th>
                         </tr>
                         </thead>
@@ -91,8 +90,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                                 <td>{{ $student->getAttribute('email') }}</td>
                                 <td>{{ $student->getAttribute('name') }}</td>
                                 <td>{{ $student->getGenderTranslation() }}</td>
-                                <td>{{ $student->student()->first()->getAttribute('school') }}</td>
-                                <td>{{ $student->student()->first()->getAttribute('grade') }}</td>
+                                <td>{{ $student->getAttribute('lost_password') ?? '-'}}</td>
                                 <td>{{ $student->student()->first()->getAttribute('active') == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
                             </tr>
                         @endforeach
