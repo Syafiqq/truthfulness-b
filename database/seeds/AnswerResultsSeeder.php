@@ -33,11 +33,11 @@ class AnswerResultsSeeder extends RollbackAbleSeeder
         ];
         $data       = [
             [
-                ['id' => '6e851862-9870-4185-99ff-dc94e0ae74f4', 'answer_code' => 1, 'category' => 1, 'result' => 10.0],
-                ['id' => '50b73699-6a92-4a15-abc0-2101332da221', 'answer_code' => 1, 'category' => 2, 'result' => 20.0],
-                ['id' => '48cad2ee-470b-46d7-a7d8-7d5f2951d817', 'answer_code' => 1, 'category' => 3, 'result' => 30.0],
-                ['id' => 'b9217f4e-3006-41d6-ac70-902b3347ab72', 'answer_code' => 1, 'category' => 4, 'result' => 40.0],
-                ['id' => '4becffa3-f604-4512-a866-c090ebd0bc12', 'answer_code' => 1, 'category' => 5, 'result' => 50.0],
+                ['id' => '6e851862-9870-4185-99ff-dc94e0ae74f4', 'answer_code' => 1, 'category' => 1, 'result' => 0.0],
+                ['id' => '50b73699-6a92-4a15-abc0-2101332da221', 'answer_code' => 1, 'category' => 2, 'result' => 0.0],
+                ['id' => '48cad2ee-470b-46d7-a7d8-7d5f2951d817', 'answer_code' => 1, 'category' => 3, 'result' => 0.0],
+                ['id' => 'b9217f4e-3006-41d6-ac70-902b3347ab72', 'answer_code' => 1, 'category' => 4, 'result' => 0.0],
+                ['id' => '4becffa3-f604-4512-a866-c090ebd0bc12', 'answer_code' => 1, 'category' => 5, 'result' => 0.0],
             ],
             [
                 ['id' => '781995d4-98c6-4fd4-be72-2e57879db5df', 'answer_code' => 2, 'category' => 1, 'result' => 0.0],
@@ -68,12 +68,12 @@ class AnswerResultsSeeder extends RollbackAbleSeeder
 
     private function calculate()
     {
-        $data = [1];
+        $data = ['9e5669fe-b0e7-4d8e-a9bf-436b6046c9fa'];
 
         foreach ($data as $answer_code)
         {
             /** @var Answer $answer */
-            $answer = Answer::find($answer_code);
+            $answer = Answer::where('id', $answer_code)->first();
             if (!is_null($answer))
             {
                 $this->_calculate($answer);
