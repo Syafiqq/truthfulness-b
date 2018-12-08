@@ -2,6 +2,7 @@
 
 use App\Eloquent\User;
 use Closure;
+use Ramsey\Uuid\Uuid;
 
 class ValidStudentReportPublish
 {
@@ -15,8 +16,8 @@ class ValidStudentReportPublish
      */
     public function handle($request, Closure $next)
     {
-        $id     = $request->route()->getParameter('id', 0);
-        $answer = $request->route()->getParameter('answer', 0);
+        $id     = $request->route('id', Uuid::NIL);
+        $answer = $request->route('answer', Uuid::NIL);
         /** @var User $user */
         $user = User::with(['answer' => function ($query) use ($answer) {
             $query->where('id', '=', $answer);
