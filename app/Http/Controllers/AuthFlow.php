@@ -17,6 +17,7 @@ use App\Eloquent\UserStudents;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Ramsey\Uuid\Uuid;
 
 trait AuthFlow
 {
@@ -28,29 +29,32 @@ trait AuthFlow
      */
     public function registerStore(Request $request, Auth $auth, $role)
     {
-        $data = $request->validate([
-            'credential' => 'required|max:100|unique:users',
-            'email' => 'required|max:100|email|unique:users',
-            'name' => 'required|max:100',
-            'gender' => 'required|in:male,female',
-            'role' => "required|in:{$role}",
-            'password' => 'required|confirmed|min:8',
-            'token' => "required|exists:coupons,coupon,usage,{$role}",
+        $credentials = $this->validate($request, [
+            'credential' => 'bail|required|max:100|unique:users',
+            'email' => 'bail|required|max:100|email',
+            'name' => 'bail|required|max:100',
+            'gender' => 'bail|required|in:male,female',
+            'role' => 'bail|required|in:student,counselor',
+            'password' => 'bail|required|confirmed|min:8',
+            'password_confirmation' => 'bail|required|min:8',
+            'token' => "bail|required|exists:coupons,coupon,usage,{$this->role}",
         ]);
 
         /** @var Builder $coupon */
         $coupon = new Coupon();
         $coupon->where('coupon', '=', $request->input('token', null))->delete();
 
-        $this->create($request->all());
+        $this->create($credentials);
 
-        return $this->postLogin($auth, $request, $role);
+        return redirect()->route("$role.auth.login.get")->with('cbk_msg', ['notify' => ['Register Berhasil']]);
     }
 
     public function create(array $data)
     {
         /** @var User $model */
-        $model = new User;
+        $model            = new User;
+        $model->{'id'}    = Uuid::uuid4()->toString();
+        $model->{'stamp'} = Uuid::uuid4()->toString();
         $model->setAttribute('credential', $data['credential']);
         $model->setAttribute('email', $data['email']);
         $model->setAttribute('name', $data['name']);
@@ -72,14 +76,17 @@ trait AuthFlow
             case 'counselor' :
                 {
                     /** @var UserCounselors $profile */
-                    $profile = new UserCounselors();
+                    $profile         = new UserCounselors();
+                    $profile->{'id'} = Uuid::uuid4()->toString();
+
                     $model->counselor()->save($profile);
                     break;
                 }
             case 'student' :
                 {
                     /** @var UserStudents $profile */
-                    $profile = new UserStudents();
+                    $profile         = new UserStudents();
+                    $profile->{'id'} = Uuid::uuid4()->toString();
                     $model->student()->save($profile);
                     break;
                 }
