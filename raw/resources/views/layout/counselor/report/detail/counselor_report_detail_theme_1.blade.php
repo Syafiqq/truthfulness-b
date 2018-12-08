@@ -95,7 +95,7 @@ $student = $report->getAttribute('student');
                                     /** @var \App\Eloquent\AnswerResult $result */
                                     $result = $results->filter(/** @param \App\Eloquent\AnswerResult $result */
                                         function ($result) use ($category) {
-                                            return intval($result->getAttribute('category')) === $category->getKey();
+                                            return $result->getAttribute('category') === $category->getKey();
                                         })->first();
                                     ?>
                                     <td>{{ $isInProcess ? '-' : (is_null($result) ? '-' : sprintf("%.4g%%", doubleval($result->getAttribute('result')))) }}</td>

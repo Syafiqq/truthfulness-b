@@ -26,7 +26,7 @@ class Report extends Controller
 
     public function detail($id)
     {
-        $categories = QuestionCategory::all();
+        $categories = QuestionCategory::orderBy('order')->get();
         $report     = User::with(['student', 'answer' => function ($query) {
             $query->with('answer_result');
         }])->where('role', '=', 'student')->where('id', '=', $id)->first();
