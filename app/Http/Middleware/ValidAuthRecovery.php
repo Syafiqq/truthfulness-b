@@ -1,6 +1,8 @@
 <?php namespace App\Http\Middleware;
 
 use App\Eloquent\User;
+use App\Model\Popo\PopoMapper;
+use App\Model\Util\HttpStatus;
 use Closure;
 
 class ValidAuthRecovery
@@ -22,9 +24,26 @@ class ValidAuthRecovery
             ->first();
         if ($user === null)
         {
-            abort(404);
+            if ($request->expectsJson())
+            {
+                return response()->json(PopoMapper::alertResponse(HttpStatus::NOT_FOUND, 'Halaman Tidak Ditemukan'), HttpStatus::NOT_FOUND);
+            }
+            else
+            {
+                abort(404);
+            }
         }
-        $request->route()->setParameter('user', $user);
+        else
+        {
+            if ($request->expectsJson())
+            {
+
+            }
+            else
+            {
+                $request->route()->setParameter('user', $user);
+            }
+        }
 
         return $next($request);
     }
