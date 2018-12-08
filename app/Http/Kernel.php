@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
 
 namespace App\Http;
 
@@ -60,6 +60,13 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'auth.role' => \App\Http\Middleware\AuthRole::class,
+        'authenticated.source' => \App\Http\Middleware\AuthenticatedSource::class,
+        'valid.student' => \App\Http\Middleware\ValidStudent::class,
+        'valid.student.report.detail' => \App\Http\Middleware\ValidStudentReportDetail::class,
+        'valid.student.report.publish' => \App\Http\Middleware\ValidStudentReportPublish::class,
+        'valid.counselor.profile' => \App\Http\Middleware\CounselorProfileCompletion::class,
+        'valid.auth.recovery' => \App\Http\Middleware\ValidAuthRecovery::class
     ];
 
     /**
