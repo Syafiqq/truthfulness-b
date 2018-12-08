@@ -10,7 +10,6 @@
 
 namespace Tests\Request\Student\Auth;
 
-use App\Eloquent\Coupon;
 use App\Eloquent\Session;
 use App\Eloquent\User;
 use App\Model\Util\ClaimTable;
@@ -93,88 +92,6 @@ class AuthTest extends TestCase
         ]);
 
         return json_decode($response->content(), true);
-    }
-
-    public function test_it_should_fail_register_missing_required_data()
-    {
-        /** @var $response */
-        $response = $this->json('POST', '/student/auth/register',
-            [
-                'credential' => '10002',
-                'token' => 'AAAAAAAAAAAA',
-                'name' => 'Test',
-                'gender' => 'male',
-                'avatar' => null,
-                'password' => '12345678',
-                'password_confirmation' => '12345678'
-            ],
-            [
-                'Accept' => 'application/json',
-            ]);
-        $response->assertJson([
-            'code' => HttpStatus::UNPROCESSABLE_ENTITY,
-        ]);
-        echo vj($response->content());
-    }
-
-    public function test_it_should_success_register()
-    {
-        /** @var $response */
-        $response = $this->json('POST', '/student/auth/register',
-            [
-                'credential' => '10002',
-                'token' => 'AAAAAAAAAAAA',
-                'name' => 'Test',
-                'gender' => 'male',
-                'avatar' => null,
-                'password' => '12345678',
-                'password_confirmation' => '12345678',
-                'email' => 'syafiq.rezpector@gmail.cos'
-            ],
-            [
-                'Accept' => 'application/json',
-            ]);
-        $response->assertJson([
-            'code' => HttpStatus::OK,
-        ]);
-        User::where('credential', '10002')->delete();
-        Coupon::insert([['id' => \Ramsey\Uuid\Uuid::uuid4()->toString(), 'assignee' => '528338a8-eefd-4eb7-a24b-c9f84c745621', 'coupon' => 'AAAAAAAAAAAA', 'usage' => 'student']]);
-        echo vj($response->content());
-    }
-
-    public function test_it_should_fail_register_due_to_already_exists()
-    {
-        /** @var $response */
-        User::insert([[
-            'id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
-            'stamp' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
-            'credential' => '10002',
-            'name' => 'Test',
-            'gender' => 'male',
-            'avatar' => null,
-            'password' => '12345678',
-            'email' => 'syafiq.rezpector@gmail.cos'
-        ]
-        ]);
-        $response = $this->json('POST', '/student/auth/register',
-            [
-                'credential' => '10002',
-                'token' => 'AAAAAAAAAAAA',
-                'name' => 'Test',
-                'gender' => 'male',
-                'avatar' => null,
-                'password' => '12345678',
-                'password_confirmation' => '12345678',
-                'email' => 'syafiq.rezpector@gmail.cos'
-            ],
-            [
-                'Accept' => 'application/json',
-            ]);
-        $response->assertJson([
-            'code' => HttpStatus::UNPROCESSABLE_ENTITY,
-        ]);
-        User::where('credential', '10002')->delete();
-        echo vj($response->content());
     }
 
     public function test_it_should_fail_lost_missing_required_data()
