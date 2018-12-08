@@ -133,7 +133,7 @@ class Home extends Controller
                     $user->setAttribute('name', $ss['name']);
                     $user->setAttribute('password', $ss['password']);
                     $user->setAttribute('gender', $ss['gender']);
-                    $user->setAttribute('avatar', $this->generateAvatar($ss['gender']));
+                    $user->setAttribute('avatar', null);
                     $user->setAttribute('role', 'student');
                     $user->save();
                     $user->student()->save(new UserStudents());
