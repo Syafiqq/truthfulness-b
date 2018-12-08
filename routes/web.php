@@ -13,11 +13,6 @@
 
 /** @var \Illuminate\Routing\Router $router */
 $router->get('/', ['middleware' => 'guest', 'as' => 'root', 'uses' => 'WelcomeController@index']);
-$router->group(['prefix' => '/template', 'middleware' => 'debug'], function () use ($router) {
-    $router->get('/boilerplate', 'TemplateController@boilerplate');
-    $router->get('/bootstrap', 'TemplateController@bootstrap');
-    $router->get('/adminlte', 'TemplateController@adminlte');
-});
 $router->group(['namespace' => 'Counselor', 'prefix' => '/counselor'], function () use ($router) {
     $router->group(['prefix' => '/auth'], function () use ($router) {
         $router->group(['middleware' => 'guest'], function () use ($router) {
