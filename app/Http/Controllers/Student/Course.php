@@ -117,7 +117,7 @@ class Course extends Controller
         $navigation = $user->{'answer'}->where('finished_at', null)->first()->answer_detail()->orderBy('order')->select(['order', 'question', 'answer'])->get()->map(function ($v) use ($current) {
             return ['no' => $v->{'order'}, 'answer' => $v->{'answer'}, 'status' => is_null($v->{'answer'}) ? ($v->{'question'} == $current['question'] ? 2 : 0) : ($v->{'question'} == $current['question'] ? 2 : 1)];
         })->toArray();
-        $summary  = [
+        $summary = [
             'answered' => count(array_filter($navigation, function ($v) { return !is_null($v['answer']); })),
             'total' => count($navigation)
         ];
@@ -178,10 +178,14 @@ class Course extends Controller
             $answer->{'updated_at'} = Carbon::now();
         }
         $answer->save();
+        $navigation = $user->{'answer'}->where('finished_at', null)->first()->answer_detail()->select('answer')->get()->pluck('answer')->toArray();
+        $summary    = [
+            'answered' => count(array_filter($navigation, function ($v) { return !is_null($v); })),
+            'total' => count($navigation)
+        ];
+        $next       = $user->GetAnswerDetail($qval + 1);
 
-        $next = $user->GetAnswerDetail($qval + 1);
-
-        return response()->json(PopoMapper::alertResponse(HttpStatus::OK, 'Jawaban Berhasil disimpan', ['next' => $next == null ? null : ($qval + 1)]), HttpStatus::OK);
+        return response()->json(PopoMapper::alertResponse(HttpStatus::OK, 'Jawaban Berhasil disimpan', ['next' => $next == null ? null : ($qval + 1), 'summary' => $summary]), HttpStatus::OK);
     }
 
     public function submit(Request $request)
