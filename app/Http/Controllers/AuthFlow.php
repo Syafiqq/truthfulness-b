@@ -93,12 +93,11 @@ trait AuthFlow
     }
 
     /**
-     * @param Auth $auth
      * @param Request $request
      * @param string $role
      * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function postLogin(Auth $auth, Request $request, $role)
+    public function postLogin(Request $request, $role)
     {
         $this->validate($request, [
             'credential' => 'required|exists:users,credential|max:100',
@@ -108,7 +107,7 @@ trait AuthFlow
 
         $credentials = $request->only(['credential', 'password', 'role']);
 
-        if ($auth->attempt($credentials, false))
+        if (Auth::attempt($credentials, false))
         {
             return $this->validResponseOrDefault($this->redirectPath(), redirect()->intended($this->redirectPath()), ['notify' => ['Successfully Login']]);
         }
