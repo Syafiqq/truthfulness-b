@@ -191,7 +191,7 @@ class Course extends Controller
          * @var UserStudents $student
          */
         $answer  = \Tymon\JWTAuth\Facades\JWTAuth::user()->{'answer'}->where('finished_at', null)->first();
-        $student = \Tymon\JWTAuth\Facades\JWTAuth::user()->{'student'}->first();
+        $student = \Tymon\JWTAuth\Facades\JWTAuth::user()->student()->first();
         $this->calculate($answer);
         $answer->setAttribute('finished_at', Carbon::now());
         $student->setAttribute('active', false);
