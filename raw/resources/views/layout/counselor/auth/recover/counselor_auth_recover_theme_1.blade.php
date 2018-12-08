@@ -41,7 +41,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
     <div class="container">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="registrationform">
-                {!! $form->open(['route' => ['counselor.auth.recover.patch', "credential={$user->getAttribute('credential')}", "token={$user->getAttribute('lost_password')}"], 'method' => 'patch', 'class' => 'form-horizontal']) !!}
+                {!! $form->open(['route' => ['counselor.auth.recover.patch', "credential={$credential}"], 'method' => 'patch', 'class' => 'form-horizontal']) !!}
                 <fieldset>
                     <legend style="font-family: Yatra One,serif; color: #ff9800!important;">Form Perubahan Password
                         <i class="fa fa-pencil pull-right"></i>

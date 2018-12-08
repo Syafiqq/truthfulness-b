@@ -3,6 +3,7 @@
 use App\Eloquent\User;
 use App\Http\Controllers\AuthFlow;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class Auth extends Controller
 {
@@ -28,9 +29,11 @@ class Auth extends Controller
         return view("layout.counselor.auth.lost.counselor_auth_lost_$this->theme");
     }
 
-    public function getRecover($role, User $user)
+    public function getRecover(Request $request)
     {
-        return view("layout.counselor.auth.recover.counselor_auth_recover_$this->theme", compact('user'));
+        $credential = $request->input('credential', '');
+
+        return view("layout.counselor.auth.recover.counselor_auth_recover_$this->theme", compact('credential'));
     }
 
     /**

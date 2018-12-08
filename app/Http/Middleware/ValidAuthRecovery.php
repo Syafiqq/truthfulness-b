@@ -17,7 +17,7 @@ class ValidAuthRecovery
     {
         $role       = $request->segment(1, null);
         $credential = $request->input('credential', null);
-        $token      = $request->input('token', null);
+        $token      = $request->post('token', null);
         $user       = User::where('credential', '=', $credential)
             ->where('lost_password', '=', $token)
             ->where('role', '=', $role)
