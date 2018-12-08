@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers\Counselor;
 
-use App\Eloquent\User;
 use App\Eloquent\UserCounselors;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,10 +19,6 @@ class Profile extends Controller
     public function __construct()
     {
         parent::__construct();
-        /** @var User $user */
-        /** @noinspection PhpUndefinedMethodInspection */
-        $user            = \Illuminate\Support\Facades\Auth::user();
-        $this->counselor = $user ? $user->getAttribute('counselor') : null;
     }
 
     /**
@@ -32,6 +27,8 @@ class Profile extends Controller
      */
     public function edit()
     {
+        $user            = \Illuminate\Support\Facades\Auth::user();
+        $this->counselor = $user ? $user->getAttribute('counselor') : null;
         return view("layout.counselor.profile.edit.counselor_profile_edit_$this->theme", ['counselor' => $this->counselor]);
     }
 
@@ -40,6 +37,7 @@ class Profile extends Controller
      *
      * @param Request $request
      * @return Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request)
     {
@@ -48,6 +46,9 @@ class Profile extends Controller
             'school_head' => 'required',
             'school_head_credential' => 'required',
         ]);
+
+        $user            = \Illuminate\Support\Facades\Auth::user();
+        $this->counselor = $user ? $user->getAttribute('counselor') : null;
 
         $counselor = $request->only(['school', 'school_head', 'school_head_credential']);
 
