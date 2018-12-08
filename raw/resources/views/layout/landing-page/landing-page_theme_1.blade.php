@@ -63,10 +63,10 @@ $html = \Collective\Html\HtmlFacade::getFacadeRoot();
                         <a href="#subscribe" style="font-family: comic sans ms; font-size: large;">Menggunakan Aplikasi</a>
                         <ul>
                             <li>
-                                <a href="{{route('student.auth.register.create')}}" style="font-family: comic sans ms; font-size: large;">Daftar Akun</a>
+                                <a href="{{route('counselor.auth.register.create')}}" style="font-family: comic sans ms; font-size: large;">Daftar Akun</a>
                             </li>
                             <li>
-                                <a href="{{route('student.auth.login.get')}}" style="font-family: comic sans ms; font-size: large;">Masuk Akun</a>
+                                <a href="{{route('counselor.auth.login.get')}}" style="font-family: comic sans ms; font-size: large;">Masuk Akun</a>
                             </li>
                         </ul>
                     </li>
@@ -129,13 +129,13 @@ $html = \Collective\Html\HtmlFacade::getFacadeRoot();
             <div class="row">
                 <div class="col-md-4 subscribe-btn-container">
                     <p class="subscribe-text" style="text-align: left;">Apabila anda belum memiliki Akun, Silahkan Mendaftarkan Akun untuk menggunakan Aplikasi ini</p>
-                    <a class="subscribe-btn" href="{{route('student.auth.register.create')}}" style="font-family: Crete Round; color:white; border-color: white;">Daftar akun</a>
+                    <a class="subscribe-btn" href="{{route('counselor.auth.register.create')}}" style="font-family: Crete Round; color:white; border-color: white;">Daftar akun</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 subscribe-btn-container">
                     <p class="subscribe-text" style="text-align: left;">Apabila anda sudah memiliki Akun, Silahkan Masuk Akun untuk menggunakan Aplikasi ini</p>
-                    <a class="subscribe-btn" href="{{route('student.auth.login.get')}}" style="font-family: Crete Round; color:white; border-color: white;">Masuk akun.</a>
+                    <a class="subscribe-btn" href="{{route('counselor.auth.login.get')}}" style="font-family: Crete Round; color:white; border-color: white;">Masuk akun.</a>
                 </div>
             </div>
         </div>
