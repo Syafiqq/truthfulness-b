@@ -30,7 +30,7 @@ class Profile extends Controller
     {
         parent::__construct();
         /** @var User $user */
-        $user          = $auth->user();
+        $user          = \Illuminate\Support\Facades\Auth::guard('api')->user();
         $this->student = $user ? $user->{'student'} : null;
     }
 
