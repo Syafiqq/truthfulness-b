@@ -48,6 +48,14 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                     </legend>
                     <div class="form-group">
                         <label for="inputPassword" class="col-lg-3 control-label">
+                            Token
+                        </label>
+                        <div class="col-lg-9">
+                            {!! $form->input('text','token',null,  ['placeholder' => 'Token', 'required'=> true, 'class'=>'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-lg-3 control-label">
                             Kata Sandi
                         </label>
                         <div class="col-lg-9">
