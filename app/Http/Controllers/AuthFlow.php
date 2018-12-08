@@ -173,7 +173,7 @@ trait AuthFlow
         $user->generateRecoveryCode()->save();
         $path = $this->defaultRecoverPath($user);
 
-        return redirect($path)->with('cbk_msg', ['notify' => ['Silahkan ganti password anda disini']]);
+        return redirect($path)->with('cbk_msg', ['notify' => ['Silahkan ganti password anda disini', 'Hubungi Konselor untuk mendapatkan token']]);
     }
 
     public function patchRecover($role, User $user, Request $request)
