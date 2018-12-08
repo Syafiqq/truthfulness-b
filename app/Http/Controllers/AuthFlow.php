@@ -16,9 +16,7 @@ use App\Eloquent\UserCounselors;
 use App\Eloquent\UserStudents;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Mail\Mailer;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 trait AuthFlow
 {
@@ -173,20 +171,9 @@ trait AuthFlow
         /** @var User $user */
         $user = User::where('credential', $request->input('credential'))->first();
         $user->generateRecoveryCode()->save();
-        /** @var Mailer $mail */
-        $mail = Mail::getFacadeRoot();
         $path = $this->defaultRecoverPath($user);
 
-        $theme = $this->theme ?: 'default';
-        $theme = 'default';
-        if (is_null($user->getAttribute('email')))
-        {
-            return redirect()->back()->with('cbk_msg', ['notify' => ['Email anda tidak valid untuk melanjutkan proses']]);
-        }
-        else
-        {
-            return redirect($path)->with('cbk_msg', ['notify' => ['Silahkan ganti password anda disini']]);
-        }
+        return redirect($path)->with('cbk_msg', ['notify' => ['Silahkan ganti password anda disini']]);
     }
 
     public function patchRecover($role, User $user, Request $request)
