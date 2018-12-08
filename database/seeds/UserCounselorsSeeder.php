@@ -34,7 +34,7 @@ class UserCounselorsSeeder extends RollbackAbleSeeder
             $counselor->{'id'}                     = '37a546f1-7f4a-4fb8-ba40-cc8ec760efa2';
             $counselor->{'user'}                   = '528338a8-eefd-4eb7-a24b-c9f84c745621';
             $counselor->{'school'}                 = 'SMA Negeri 0 Malang';
-            $counselor->{'school_head'}            = 'Sutidjo} = S.Pd} = M.Pd';
+            $counselor->{'school_head'}            = 'Sutiono S.Pd, M.Pd';
             $counselor->{'school_head_credential'} = '19451708199008230002';
 
             $counselor->save();
