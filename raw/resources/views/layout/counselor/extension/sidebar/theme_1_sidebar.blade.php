@@ -7,11 +7,11 @@ $user = \Illuminate\Support\Facades\Auth::user();
     <section class="sidebar">
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <a href="{{route('counselor.profile.edit')}}" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="{{asset($user->getAttribute('avatar'))}}" class="user-image img-thumbnail img-circle center-block" width="64px" alt="User Image">
+            <img src="{{asset($user->getAttribute('avatar') ?? '/assets/img/avatar/default/default.png')}}" class="user-image img-thumbnail img-circle center-block" width="64px" alt="User Image">
         </a>
         <ul class="dropdown-menu">
             <li class="user-header">
-                <img src="{{asset($user->getAttribute('avatar'))}}" class="img-circle" alt="User Image">
+                <img src="{{asset($user->getAttribute('avatar') ?? '/assets/img/avatar/default/default.png')}}" class="img-circle" alt="User Image">
             </li>
         </ul>
         <ul class="sidebar-menu" data-widget="tree">
