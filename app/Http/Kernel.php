@@ -67,7 +67,18 @@ class Kernel extends HttpKernel
         'valid.student.report.detail' => \App\Http\Middleware\ValidStudentReportDetail::class,
         'valid.student.report.publish' => \App\Http\Middleware\ValidStudentReportPublish::class,
         'valid.counselor.profile' => \App\Http\Middleware\CounselorProfileCompletion::class,
-        'valid.auth.recovery' => \App\Http\Middleware\ValidAuthRecovery::class
+        'valid.auth.recovery' => \App\Http\Middleware\ValidAuthRecovery::class,
+
+        'c.jwt.auth.student' => \App\Http\Middleware\JWTStudentAuthenticate::class,
+        'c.jwt.refresh' => \App\Http\Middleware\JWTRefreshToken::class,
+        'course.open.available' => \App\Http\Middleware\AvailableOpenedCourse::class,
+        'course.open.finished' => \App\Http\Middleware\FinishedOpenedQuestion::class,
+        'course.open.unavailable' => \App\Http\Middleware\NoOpenedCourse::class,
+        'registered.role' => \App\Http\Middleware\RegisteredRole::class,
+        'valid.answer' => \App\Http\Middleware\ValidAnswer::class,
+        'valid.question' => \App\Http\Middleware\ValidOpenedCourseQuestion::class,
+        'valid.student.profile' => \App\Http\Middleware\StudentProfileCompletion::class,
+        'valid.self.report.detail' => \App\Http\Middleware\ValidSelfReportDetail::class,
     ];
 
     /**
