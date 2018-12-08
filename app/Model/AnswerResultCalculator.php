@@ -14,12 +14,16 @@ use App\Eloquent\Answer;
 use App\Eloquent\AnswerDetail;
 use App\Eloquent\AnswerResult;
 use App\Eloquent\Question;
+use App\Eloquent\QuestionOption;
 use Illuminate\Support\Facades\DB;
 
 trait AnswerResultCalculator
 {
     public function calculate(Answer $answer)
     {
+        $options = QuestionOption::all(['id', 'value'])->mapWithKeys(function ($q) {
+            return [$q->{'id'} => $q->{'value'}];
+        });
         /** @var AnswerResult $answer_results */
         $answer_results = $answer->{'answer_result'};
         /** @var AnswerDetail $answer_scope */
@@ -32,13 +36,13 @@ trait AnswerResultCalculator
             /** @var AnswerDetail $answer_detail */
             foreach ($answer_details as $answer_detail)
             {
-                $result += is_null($answer_detail->{'answer'}) ? 0 : (intval($answer_detail->{'favour'}) === 1 ? doubleval($answer_detail->{'answer'}) : (doubleval($answer_detail->{'scale'}) - doubleval($answer_detail->{'answer'}) + 1));
+                $result += is_null($answer_detail->{'answer'}) ? 0 : (strval($answer_detail->{'favour'}) == '27d48b87-e04e-4dab-8cbf-18abbee49279' ? doubleval($options[$answer_detail->{'answer'}]) : (doubleval($answer_detail->{'scale'}) - doubleval($options[$answer_detail->{'answer'}]) + 1));
             }
             try
             {
                 $result *= 100.0 / (doubleval($answer_scope->{'count'}) * doubleval($answer_scope->{'max'}));
             }
-            catch (\ErrorException $e)
+            catch (\Exception $e)
             {
                 $result = 0;
             }
