@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Model\Popo\PopoMapper;
 use App\Model\Util\ClaimTable;
 use App\Model\Util\HttpStatus;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
@@ -168,14 +167,13 @@ class Auth extends Controller
     }
 
     /**
-     * @param Guard $auth
      * @return \Illuminate\Http\JsonResponse
      */
-    public function postLogout(Guard $auth)
+    public function postLogout()
     {
         /** @var User $user */
         /** @noinspection PhpUndefinedMethodInspection */
-        $auth->logout(true);
+        \Illuminate\Support\Facades\Auth::guard('api')->logout(true);
 
         return response()->json(PopoMapper::alertResponse(HttpStatus::OK, 'Logout Berhasil'), HttpStatus::OK);
     }
