@@ -136,7 +136,9 @@ class Home extends Controller
                     $user->setAttribute('avatar', null);
                     $user->setAttribute('role', 'student');
                     $user->save();
-                    $user->student()->save(new UserStudents());
+                    $profile         = new UserStudents();
+                    $profile->{'id'} = Uuid::uuid4()->toString();
+                    $user->student()->save($profile);
                 }
             });
 
