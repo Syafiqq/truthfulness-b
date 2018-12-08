@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Uuid;
 
 class Home extends Controller
 {
@@ -45,7 +46,8 @@ class Home extends Controller
         {
             try
             {
-                $coupon = new Coupon(['coupon' => $code]);
+                $coupon         = new Coupon(['coupon' => $code]);
+                $coupon->{'id'} = Uuid::uuid4()->toString();
                 $coupon->setAttribute('usage', $usage);
                 $user->coupon()->save($coupon);
                 break;
@@ -124,7 +126,9 @@ class Home extends Controller
             DB::transaction(function () use ($students) {
                 foreach ($students as $ss)
                 {
-                    $user = new User();
+                    $user            = new User();
+                    $user->{'id'}    = Uuid::uuid4()->toString();
+                    $user->{'stamp'} = Uuid::uuid4()->toString();
                     $user->setAttribute('credential', $ss['credential']);
                     $user->setAttribute('name', $ss['name']);
                     $user->setAttribute('password', $ss['password']);
