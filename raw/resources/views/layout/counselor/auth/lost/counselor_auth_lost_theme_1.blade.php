@@ -32,13 +32,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                         <a href="{{route('root')}}">Kembali Ke Beranda</a>
                     </li>
                     <li>
-                        <a href="{{route('student.auth.register.create')}}">Daftar Akun Siswa</a>
-                    </li>
-                    <li>
-                        <a href="{{route('counselor.auth.register.create')}}">Daftar Akun Konselor</a>
-                    </li>
-                    <li>
-                        <a href="{{route('student.auth.login.get')}}">Masuk Akun Siswa</a>
+                        <a href="{{route('counselor.auth.register.create')}}">Daftar Akun</a>
                     </li>
                 </ul>
             </div>

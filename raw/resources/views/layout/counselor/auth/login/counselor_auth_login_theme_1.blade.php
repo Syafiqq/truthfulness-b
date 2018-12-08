@@ -32,13 +32,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                         <a href="{{route('root')}}">Kembali Ke Beranda</a>
                     </li>
                     <li>
-                        <a href="{{route('student.auth.register.create')}}">Daftar Akun Siswa</a>
-                    </li>
-                    <li>
-                        <a href="{{route('counselor.auth.register.create')}}">Daftar Akun Konselor</a>
-                    </li>
-                    <li>
-                        <a href="{{route('student.auth.login.get')}}">Masuk Akun Siswa</a>
+                        <a href="{{route('counselor.auth.register.create')}}">Daftar Akun</a>
                     </li>
                 </ul>
             </div>
@@ -49,7 +43,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
             <div class="registrationform">
                 {!! $form->open(['route' => 'counselor.auth.login.post', 'method' => 'post', 'class' => 'form-horizontal']) !!}
                 <fieldset>
-                    <legend style="font-family: Yatra One,serif; color: #ff9800!important;">Form Masuk Akun Konselor
+                    <legend style="font-family: Yatra One,serif; color: #ff9800!important;">Form Masuk Akun
                         <i class="fa fa-pencil pull-right"></i>
                     </legend>
                     <div class="form-group">
