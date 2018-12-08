@@ -1,8 +1,8 @@
 <?php
 /**
- * This <konseling-1> project created by :
+ * This <konseling-003-backend> project created by :
  * Name         : syafiq
- * Date / Time  : 20 November 2017, 6:44 PM.
+ * Date / Time  : 20 November 2018, 6:44 PM.
  * Email        : syafiq.rezpector@gmail.com
  * Github       : syafiqq
  */
@@ -50,14 +50,14 @@ class UserRegistrar
     public function create(array $data)
     {
         /** @var User $model */
-        $model = new User;
-        $model->setAttribute('credential', $data['credential']);
-        $model->setAttribute('email', $data['email']);
-        $model->setAttribute('name', $data['name']);
-        $model->setAttribute('gender', $data['gender']);
-        $model->setAttribute('role', $data['role']);
-        $model->setAttribute('avatar', $model->generateAvatar($model->getAttribute('gender')));
-        $model->setAttribute('password', bcrypt($data['password']));
+        $model                 = new User;
+        $model->{'credential'} = $data['credential'];
+        $model->{'email'}      = $data['email'];
+        $model->{'name'}       = $data['name'];
+        $model->{'gender'}     = $data['gender'];
+        $model->{'role'}       = $data['role'];
+        $model->{'avatar'}     = null;
+        $model->{'password'}   = app('hash')->make($data['password'], null);
 
         $model->save();
         $this->createProfile($model);
