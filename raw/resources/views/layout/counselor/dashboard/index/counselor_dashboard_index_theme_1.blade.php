@@ -87,7 +87,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                             <tr>
                                 <td>{{$k + 1}}</td>
                                 <td>{{ $student->getAttribute('credential') }}</td>
-                                <td>{{ $student->getAttribute('email') }}</td>
+                                <td>{{ $student->getAttribute('email') ?? '-'}}</td>
                                 <td>{{ $student->getAttribute('name') }}</td>
                                 <td>{{ $student->getGenderTranslation() }}</td>
                                 <td>{{ $student->getAttribute('lost_password') ?? '-'}}</td>
