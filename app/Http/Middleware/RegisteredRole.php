@@ -3,7 +3,6 @@
 use App\Eloquent\User;
 use App\Model\Popo\PopoMapper;
 use App\Model\Util\HttpStatus;
-use App\Services\RoleSegmentManager;
 use Closure;
 
 class RegisteredRole
