@@ -40,7 +40,7 @@ class Dashboard extends Controller
      */
     public function index(Request $request)
     {
-        $answer = $this->user->{'answer'}->last();
+        $answer = $this->user->{'answer'}->sortByDesc('finished_at')->first();
         $now    = \Carbon\Carbon::now();
 
         if ($this->user->hasOpenedCourse())
