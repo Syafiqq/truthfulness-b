@@ -14,7 +14,14 @@
     "laravel/framework": "5.7.*",
     "laravel/tinker": "^1.0",
     "laravelcollective/html": "^5.7",
-    "phpoffice/phpspreadsheet": "^1.5"
+    "phpoffice/phpspreadsheet": "^1.5",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "barryvdh/laravel-cors": "^0.11.2",
+    "mdanter/ecc": "^0.5.0",
+    "ramsey/uuid": "^3.8",
+    "tymon/jwt-auth": "^1.0.0-rc.3",
+    "vlucas/phpdotenv": "~2.2"
   },
   "require-dev": {
     "beyondcode/laravel-dump-server": "^1.0",
