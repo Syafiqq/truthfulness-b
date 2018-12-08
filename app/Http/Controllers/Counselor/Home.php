@@ -33,7 +33,11 @@ class Home extends Controller
             $query->get(['school', 'grade', 'active']);
         }])->where('role', 'student')->get();
 
-        return view(" layout.counselor.dashboard.index.counselor_dashboard_index_$this->theme", compact('students', 'coupons'));
+        $counselors = User::with(['student' => function ($query) {
+            $query->get(['school', 'grade', 'active']);
+        }])->where('role', 'counselor')->get();
+
+        return view(" layout.counselor.dashboard.index.counselor_dashboard_index_$this->theme", compact('students', 'coupons', 'counselors'));
     }
 
     public function couponGenerator($usage)

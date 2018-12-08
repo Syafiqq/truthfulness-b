@@ -23,7 +23,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
             <ol class="breadcrumb">
                 <li class="active">
                     <i class="fa fa-home"></i>
-                    Daftar siswa
+                    Dashboard
                 </li>
             </ol>
         </section>
@@ -57,7 +57,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
             </div><!-- /.modal -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Dashboard</h3>
+                    <h3 class="box-title">Data Siswa</h3>
                     <div class="box-tools pull-right">
                         {!! link_to_route('counselor.home.dashboard.download', $title = 'Download Template', $parameters = [], $attributes = ['class' => 'btn btn-success btn-sm', 'type' => 'button', 'role' => 'button']); !!}
                         <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-upload">
@@ -98,9 +98,39 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                     </table>
                 </div>
                 <!-- /.box-body -->
-                <div class="box-footer">
-                    <h1>&nbsp;</h1>
+                <!-- /.box-footer-->
+            </div>
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Data Konselor</h3>
                 </div>
+                <div class="box-body">
+                    <table id="students" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>NIK/NIP</th>
+                            <th>Nama</th>
+                            <th>Password Recovery</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach(/** @var \App\Eloquent\User $user */$counselors as $k => $counselor)
+                            <?php
+                            /** @var \App\Eloquent\User $counselor */
+                            /** @noinspection PhpUndefinedVariableInspection */
+                            ?>
+                            <tr>
+                                <td>{{$k + 1}}</td>
+                                <td>{{ $counselor->getAttribute('credential') }}</td>
+                                <td>{{ $counselor->getAttribute('name') }}</td>
+                                <td>{{ $counselor->getAttribute('lost_password') ?? '-'}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
                 <!-- /.box-footer-->
             </div>
 
@@ -122,7 +152,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                         <tbody>
                         @foreach(/** @var \App\Eloquent\User $user */$coupons as $k => $coupon)
                             <?php
-                            /** @var \App\Eloquent\User $student */
+                            /** @var \App\Eloquent\User $counselor */
                             /** @noinspection PhpUndefinedVariableInspection */
                             $user = $coupon->getAttribute('users');
                             ?>
@@ -138,9 +168,6 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                     </table>
                 </div>
                 <!-- /.box-body -->
-                <div class="box-footer">
-                    <h1>&nbsp;</h1>
-                </div>
                 <!-- /.box-footer-->
             </div>
             <!-- /.box -->
