@@ -9,8 +9,8 @@ class DatabaseSeeder extends RollbackAbleSeeder
      */
     public function run()
     {
-        $this->with(true)->call('AnswerDetailsSeeder');
         $this->with(true)->call('AnswerResultsSeeder');
+        $this->with(true)->call('AnswerDetailsSeeder');
         $this->with(true)->call('AnswersSeeder');
         $this->with(true)->call('CouponSeeder');
         $this->with(true)->call('QuestionsSeeder');
@@ -30,7 +30,7 @@ class DatabaseSeeder extends RollbackAbleSeeder
         $this->with(false)->call('QuestionsSeeder');
         $this->with(false)->call('CouponSeeder');
         $this->with(false)->call('AnswersSeeder');
-        $this->with(false)->call('AnswerResultsSeeder');
         $this->with(false)->call('AnswerDetailsSeeder');
+        $this->with(false)->call('AnswerResultsSeeder');
     }
 }
