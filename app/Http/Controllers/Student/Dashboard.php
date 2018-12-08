@@ -28,7 +28,7 @@ class Dashboard extends Controller
     public function __construct(JWTAuth $auth)
     {
         parent::__construct();
-        $this->user    = $auth->user();
+        $this->user    = \Illuminate\Support\Facades\Auth::guard('api')->user();
         $this->profile = $this->user ? $this->user->{'student'} : null;
     }
 

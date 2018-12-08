@@ -43,7 +43,7 @@ class Course extends Controller
     public function create(Request $request, JWTAuth $auth)
     {
         /** @var User $user */
-        $user = $auth->user();
+        $user = \Illuminate\Support\Facades\Auth::guard('api')->user();
 
         $questionCategories = Question::where('active', '=', true)->distinct()->pluck('category');
         $questions          = $this->generateCourseOrder();
@@ -87,7 +87,7 @@ class Course extends Controller
     public function startEdit(JWTAuth $auth, $question)
     {
         /** @var User $user */
-        $user     = $auth->user();
+        $user     = \Illuminate\Support\Facades\Auth::guard('api')->user();
         $question = intval($question);
         $answers  = $user->{'answer'}->where('finished_at', null)->first()->answer_detail()->whereBetween('order', [$question - 1, $question + 1])->select('id', 'question', 'order', 'answer')->get()->toArray();
         $prev     = null;
@@ -117,7 +117,7 @@ class Course extends Controller
         $navigation = $user->{'answer'}->where('finished_at', null)->first()->answer_detail()->orderBy('order')->select(['order', 'question', 'answer'])->get()->map(function ($v) use ($current) {
             return ['no' => $v->{'order'}, 'answer' => $v->{'answer'}, 'status' => is_null($v->{'answer'}) ? ($v->{'question'} == $current['question'] ? 2 : 0) : ($v->{'question'} == $current['question'] ? 2 : 1)];
         })->toArray();
-        $summary    = [
+        $summary  = [
             'answered' => count(array_filter($navigation, function ($v) { return !is_null($v['answer']); })),
             'total' => count($navigation)
         ];
@@ -137,7 +137,7 @@ class Course extends Controller
     public function navigation(JWTAuth $auth, $question)
     {
         /** @var User $user */
-        $user    = $auth->user();
+        $user    = \Illuminate\Support\Facades\Auth::guard('api')->user();
         $current = $user->GetAnswerDetail(intval($question))->toArray();
         $summary = $user->{'answer'}->where('finished_at', null)->first()->answer_detail()->orderBy('order')->select(['order', 'question', 'answer'])->get()->map(function ($v) use ($current) {
             return ['no' => $v->{'order'}, 'status' => is_null($v->{'answer'}) ? 0 : ($v->{'question'} == $current['question'] ? 2 : 1)];
@@ -159,7 +159,7 @@ class Course extends Controller
         ]);
         $qval        = intval($question);
         /** @var User $user */
-        $user = $auth->user();
+        $user = \Illuminate\Support\Facades\Auth::guard('api')->user();
         /** @var AnswerDetail $answer */
         $answer = $user->GetAnswerDetail($qval);
 
@@ -205,7 +205,7 @@ class Course extends Controller
     public function result(JWTAuth $auth)
     {
         /** @var User $user */
-        $user       = $auth->user();
+        $user       = \Illuminate\Support\Facades\Auth::guard('api')->user();
         $categories = QuestionCategory::orderBy('order')->get();
         $answers    = $user->answer()->orderBy('started_at')->get()->toArray();
         foreach ($answers as &$a)
