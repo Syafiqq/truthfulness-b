@@ -137,7 +137,7 @@ class AuthTest extends TestCase
                 'Accept' => 'application/json',
             ]);
         $response->assertJson([
-            'code' => HttpStatus::NOT_FOUND,
+            'code' => HttpStatus::UNPROCESSABLE_ENTITY,
         ]);
         echo vj($response->content());
     }
