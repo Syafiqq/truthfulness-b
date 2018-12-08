@@ -38,6 +38,7 @@ class CreateQuestionOptionsTable extends Migration
                 $table->string('name', 100);
                 $table->string('description', 100);
                 $table->integer('order')->unsigned();
+                $table->integer('value')->unsigned();
                 $table->primary('id');
             });
         }

@@ -14,10 +14,10 @@ class QuestionOptionsSeeder extends RollbackAbleSeeder
     public function run()
     {
         $data = [
-            ['id' => 'a4601425-a340-4bde-b0e9-ca423becce07', 'order' => 4, 'name' => 'ts', 'description' => 'Tidak Sesuai'],
-            ['id' => '2c7d23d1-744d-4c2b-9756-f0a0a135e48c', 'order' => 3, 'name' => 'ks', 'description' => 'Kurang Sesuai'],
-            ['id' => 'c9c18fb0-ab08-4715-a29d-5664fcbad88b', 'order' => 2, 'name' => 's', 'description' => 'Sesuai'],
-            ['id' => 'd559a8e7-a93d-4903-a893-99a0f06f7ea2', 'order' => 1, 'name' => 'ss', 'description' => 'Sangat Sesuai'],
+            ['id' => 'a4601425-a340-4bde-b0e9-ca423becce07', 'order' => 4, 'value' => 1, 'name' => 'ts', 'description' => 'Tidak Sesuai'],
+            ['id' => '2c7d23d1-744d-4c2b-9756-f0a0a135e48c', 'order' => 3, 'value' => 2, 'name' => 'ks', 'description' => 'Kurang Sesuai'],
+            ['id' => 'c9c18fb0-ab08-4715-a29d-5664fcbad88b', 'order' => 2, 'value' => 3, 'name' => 's', 'description' => 'Sesuai'],
+            ['id' => 'd559a8e7-a93d-4903-a893-99a0f06f7ea2', 'order' => 1, 'value' => 4, 'name' => 'ss', 'description' => 'Sangat Sesuai'],
         ];
 
         /** @var \Illuminate\Database\Query\Builder $model */
