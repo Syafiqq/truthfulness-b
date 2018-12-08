@@ -17,7 +17,6 @@ $router->group(['namespace' => 'Student', 'prefix' => '/student'], function () u
         $router->post('/refresh', ['middleware' => ['c.jwt.refresh'], 'uses' => 'Auth@postRefresh', 'as' => 'student.auth.refresh.post']);
         $router->group(['middleware' => 'guest'], function () use ($router) {
             $router->post('/login', ['uses' => 'Auth@postLogin', 'as' => 'student.auth.login.post']);
-            $router->post('/register', ['uses' => 'Auth@registerStore', 'as' => 'student.auth.register.post']);
             $router->post('/lost', ['uses' => 'Auth@postLost', 'as' => 'student.auth.lost.post']);
             $router->patch('/recover', ['middleware' => ['valid.auth.recovery'], 'uses' => 'Auth@patchRecover', 'as' => 'student.auth.recover.patch']);
         });
