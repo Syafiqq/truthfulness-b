@@ -58,6 +58,6 @@ class Auth extends Controller
      */
     public function defaultRecoverPath(User $user)
     {
-        return route('counselor.auth.recover.get', ['credential' => $user->getAttribute('credential')]);
+        return route('counselor.auth.recover.get');
     }
 }
