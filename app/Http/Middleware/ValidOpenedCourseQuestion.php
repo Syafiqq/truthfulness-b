@@ -11,11 +11,10 @@ namespace App\Http\Middleware;
 
 
 use App\Eloquent\User;
-use App\Http\Utils\RouteParam;
 use App\Model\Popo\PopoMapper;
 use App\Model\Util\HttpStatus;
 use Closure;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Auth;
 
 class ValidOpenedCourseQuestion
 {
@@ -28,10 +27,10 @@ class ValidOpenedCourseQuestion
      */
     public function handle($request, Closure $next)
     {
-        $question = intval(RouteParam::get($request, 'question') ?? 0);
+        $question = intval($request->route('question', 0) ?? 0);
 
         /** @var User $user */
-        $user   = JWTAuth::user();
+        $user   = Auth::guard('api')->user();
         $answer = $user->GetAnswerDetail($question);
         if (is_null($answer))
         {

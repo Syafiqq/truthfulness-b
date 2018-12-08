@@ -14,7 +14,7 @@ use App\Model\Popo\PopoMapper;
 use App\Model\Util\HttpStatus;
 use Closure;
 use Illuminate\Database\Eloquent\Collection;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Auth;
 
 class FinishedOpenedQuestion
 {
@@ -28,7 +28,7 @@ class FinishedOpenedQuestion
     public function handle($request, Closure $next)
     {
         /** @var Collection $summary */
-        $summary = JWTAuth::user()->getUnfinishedQuestion();
+        $summary = Auth::guard('api')->user()->getUnfinishedQuestion();
 
         if (count($summary) !== 0)
         {

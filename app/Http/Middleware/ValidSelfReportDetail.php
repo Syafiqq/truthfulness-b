@@ -14,7 +14,7 @@ use App\Eloquent\User;
 use App\Model\Popo\PopoMapper;
 use App\Model\Util\HttpStatus;
 use Closure;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Auth;
 
 class ValidSelfReportDetail
 {
@@ -29,7 +29,7 @@ class ValidSelfReportDetail
     {
 
         /** @var User $user */
-        $user = JWTAuth::user();
+        $user = Auth::guard('api')->user();
         if (!$user->isDetailReportValid())
         {
             return response()->json(PopoMapper::alertResponse(HttpStatus::FORBIDDEN, 'Anda belum memiliki data'), HttpStatus::FORBIDDEN);

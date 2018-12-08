@@ -20,7 +20,7 @@ abstract class ProfileCompletion
     {
         if ($request->expectsJson())
         {
-            if ($this->isProfileComplete(\Tymon\JWTAuth\Facades\JWTAuth::user()))
+            if ($this->isProfileComplete(Auth::guard('api')->user()))
             {
                 return $next($request);
             }

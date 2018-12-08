@@ -14,6 +14,7 @@ use App\Eloquent\User;
 use App\Model\Popo\PopoMapper;
 use App\Model\Util\HttpStatus;
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class AvailableOpenedCourse
 {
@@ -27,7 +28,7 @@ class AvailableOpenedCourse
     public function handle($request, Closure $next)
     {
         /** @var User $user */
-        $user = \Tymon\JWTAuth\Facades\JWTAuth::user();
+        $user = Auth::guard('api')->user();
         if ($user->hasOpenedCourse())
         {
             return $next($request);
