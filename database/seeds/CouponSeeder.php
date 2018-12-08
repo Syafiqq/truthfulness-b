@@ -25,8 +25,8 @@ class CouponSeeder extends RollbackAbleSeeder
         if ($admin = $model->where('credential', '=', $nip)->first())
         {
             Coupon::insert([
-                ['id' => \Ramsey\Uuid\Uuid::uuid4()->toString(), 'assignee' => '528338a8-eefd-4eb7-a24b-c9f84c745621', 'coupon' => 'AAAAAAAAAAAA', 'usage' => 'student'],
-                ['id' => \Ramsey\Uuid\Uuid::uuid4()->toString(), 'assignee' => '528338a8-eefd-4eb7-a24b-c9f84c745621', 'coupon' => 'AAAAAAAAAAAB', 'usage' => 'student'],
+                ['id' => \Ramsey\Uuid\Uuid::uuid4()->toString(), 'assignee' => '528338a8-eefd-4eb7-a24b-c9f84c745621', 'coupon' => 'AAAAAAAAAAAA', 'usage' => 'counselor'],
+                ['id' => \Ramsey\Uuid\Uuid::uuid4()->toString(), 'assignee' => '528338a8-eefd-4eb7-a24b-c9f84c745621', 'coupon' => 'AAAAAAAAAAAB', 'usage' => 'counselor'],
                 ['id' => \Ramsey\Uuid\Uuid::uuid4()->toString(), 'assignee' => '528338a8-eefd-4eb7-a24b-c9f84c745621', 'coupon' => 'BBBBBBBBBBBB', 'usage' => 'counselor'],
                 ['id' => \Ramsey\Uuid\Uuid::uuid4()->toString(), 'assignee' => '528338a8-eefd-4eb7-a24b-c9f84c745621', 'coupon' => 'BBBBBBBBBBBC', 'usage' => 'counselor'],
             ]);
@@ -39,7 +39,7 @@ class CouponSeeder extends RollbackAbleSeeder
                 {
                     try
                     {
-                        $coupon = new Coupon(['id' => \Ramsey\Uuid\Uuid::uuid4()->toString(), 'assignee' => '528338a8-eefd-4eb7-a24b-c9f84c745621', 'coupon' => $this->generate(), 'usage' => $role[rand(0, 5) % 2]]);
+                        $coupon = new Coupon(['id' => \Ramsey\Uuid\Uuid::uuid4()->toString(), 'assignee' => '528338a8-eefd-4eb7-a24b-c9f84c745621', 'coupon' => $this->generate(), 'usage' => $role[1]]);
                         $coupon->save();
                         break;
                     }
