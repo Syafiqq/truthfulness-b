@@ -23,11 +23,10 @@ trait AuthFlow
 {
     /**
      * @param Request $request
-     * @param Auth $auth
      * @param string $role
      * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function registerStore(Request $request, Auth $auth, $role)
+    public function registerStore(Request $request, $role)
     {
         $credentials = $this->validate($request, [
             'credential' => 'bail|required|max:100|unique:users',
@@ -52,16 +51,16 @@ trait AuthFlow
     public function create(array $data)
     {
         /** @var User $model */
-        $model            = new User;
-        $model->{'id'}    = Uuid::uuid4()->toString();
-        $model->{'stamp'} = Uuid::uuid4()->toString();
-        $model->setAttribute('credential', $data['credential']);
-        $model->setAttribute('email', $data['email']);
-        $model->setAttribute('name', $data['name']);
-        $model->setAttribute('gender', $data['gender']);
-        $model->setAttribute('role', $data['role']);
-        $model->setAttribute('avatar', null);
-        $model->setAttribute('password', bcrypt($data['password']));
+        $model                 = new User;
+        $model->{'id'}         = Uuid::uuid4()->toString();
+        $model->{'stamp'}      = Uuid::uuid4()->toString();
+        $model->{'credential'} = $data['credential'];
+        $model->{'email'}      = $data['email'];
+        $model->{'name'}       = $data['name'];
+        $model->{'gender'}     = $data['gender'];
+        $model->{'role'}       = $data['role'];
+        $model->{'avatar'}     = null;
+        $model->{'password'}   = bcrypt($data['password']);
 
         $model->save();
         $this->createProfile($model);
@@ -189,8 +188,8 @@ trait AuthFlow
             'password' => 'required|confirmed|min:8',
         ]);
 
-        $user->setAttribute('password', bcrypt($request->input('password')));
-        $user->setAttribute('lost_password', null);
+        $user->{'password'}      = bcrypt($request->input('password'));
+        $user->{'lost_password'} = null;
         $user->save();
 
         return redirect()->route("$role.auth.login.get")->with('cbk_msg', ['notify' => ['Password telah berhasil dirubah']]);
@@ -200,7 +199,7 @@ trait AuthFlow
     {
         /** @var User $user */
         /** @noinspection PhpUndefinedMethodInspection */
-        $role = Auth::user()->getAttribute('role');
+        $role = Auth::user()->{'role'};
         Auth::logout();
 
         return redirect()->route("$role.auth.login.get")->with('cbk_msg', ['notify' => ['Successfully Logout']]);
