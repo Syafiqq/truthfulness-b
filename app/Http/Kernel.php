@@ -79,6 +79,7 @@ class Kernel extends HttpKernel
         'valid.question' => \App\Http\Middleware\ValidOpenedCourseQuestion::class,
         'valid.student.profile' => \App\Http\Middleware\StudentProfileCompletion::class,
         'valid.self.report.detail' => \App\Http\Middleware\ValidSelfReportDetail::class,
+        'valid.self.report.publish' => \App\Http\Middleware\ValidSelfReportPublish::class,
     ];
 
     /**
