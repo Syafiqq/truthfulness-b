@@ -1,8 +1,10 @@
 <?php
 $musics = [
-    ['name' => 'Instrument 1', 'source' => '/assets/audio/mp3/song1.mp3'],
-    ['name' => 'Instrument 2', 'source' => '/assets/audio/mp3/song1.mp3'],
-    ['name' => 'Instrument 3', 'source' => '/assets/audio/mp3/song1.mp3'],
+    ['name' => 'Truthfulness 1', 'source' => '/assets/audio/mp3/truth1.mp3'],
+    ['name' => 'Truthfulness 2', 'source' => '/assets/audio/mp3/truth2.mp3'],
+    ['name' => 'Truthfulness 3', 'source' => '/assets/audio/mp3/truth3.mp3'],
+    ['name' => 'Truthfulness 4', 'source' => '/assets/audio/mp3/truth4.mp3'],
+    ['name' => 'Truthfulness 5', 'source' => '/assets/audio/mp3/truth5.mp3'],
 ]
 ?>
 <div id="cover">
