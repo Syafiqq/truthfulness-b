@@ -32,7 +32,7 @@ class ValidSelfReportPublish
         $answer = $request->route('answer', Uuid::NIL);
 
         /** @var Answer $answer */
-        $answer = Auth::guard('api')::user()->answer()->where('id', '=', $answer)->first();
+        $answer = Auth::guard('api')->user()->answer()->where('id', '=', $answer)->first();
         if (is_null($answer))
         {
             return response()->json(PopoMapper::alertResponse(HttpStatus::FORBIDDEN, 'Data Tidak Ditemukan'), HttpStatus::FORBIDDEN);
