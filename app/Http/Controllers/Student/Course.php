@@ -222,6 +222,23 @@ class Course extends Controller
 
         return response()->json(PopoMapper::alertResponse(HttpStatus::OK, '', compact('categories', 'answers')), HttpStatus::OK);
     }
+
+    public function detail($answer)
+    {
+        /** @var User $user */
+        $user = \Illuminate\Support\Facades\Auth::guard('api')->user();
+        /** @var Answer $student */
+        $student                                 = User::with(['answer' => function ($query) use ($answer) {
+            $query->with('answer_result')->where('id', '=', $answer);
+        }, 'student' => function ($query) use ($user) {
+            $query->where('user', $user->{'id'});
+        }])->where('id', '=', $user->{'id'})->first();
+        $student->{'answer'}[0]['accumulation']  = $student->{'answer'}[0]['answer_result']->sum('result');
+        $student->{'answer'}[0]['analytics']     = (new Answer())->getResultAnalytics()['1'];
+        $student->{'answer'}[0]['f_finished_at'] = ___d(Carbon::createFromFormat('Y-m-d H:i:s', $student->{'answer'}[0]['finished_at'])->formatLocalized('%e %B %Y'));
+
+        return response()->json(PopoMapper::alertResponse(HttpStatus::OK, '', compact('student', 'answers')), HttpStatus::OK);
+    }
 }
 
 ?>

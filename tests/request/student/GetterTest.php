@@ -112,6 +112,23 @@ class GetterTest extends \Tests\TestCase
         ]);
         echo vj($response->content());
     }
+
+    public function test_get_detail()
+    {
+        /** @var $response */
+        $answer   = '70ec998c-064d-4925-b46a-cf4f70fef087';
+        $token    = $this->auth();
+        $response = $this->json('GET', "/student/course/{$answer}/detail",
+            [],
+            [
+                'Accept' => 'application/json',
+                'Authorization' => "Bearer {$token['data']['token']}"
+            ]);
+        $response->assertJson([
+            'code' => HttpStatus::OK,
+        ]);
+        echo vj($response->content());
+    }
 }
 
 ?>
