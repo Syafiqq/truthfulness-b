@@ -13,7 +13,7 @@ if (!isset($categories))
 $student = $report->getAttribute('student');
 ?>
 @section('head-title')
-    <title>Detail</title>
+    <title>Detail Hasil Pengisian Inventori</title>
 @endsection
 
 @section('head-description')
@@ -33,12 +33,13 @@ $student = $report->getAttribute('student');
                 <li>
                     <a href="{{route('counselor.report.list')}}">
                         <i class="fa fa-home"></i>
-                        Report
+                        Hasil Pengisian Inventori Nilai Moral
+                        <i>Truthfulness</i>
                     </a>
                 </li>
                 <li class="active">
                     <i class="fa fa-list"></i>
-                    Detail
+                    Detail Hasil Pengisian
                 </li>
             </ol>
         </section>

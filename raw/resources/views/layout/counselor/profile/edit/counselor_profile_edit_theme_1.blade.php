@@ -4,7 +4,7 @@
 $form = \Collective\Html\FormFacade::getFacadeRoot();
 ?>
 @section('head-title')
-    <title>Profile</title>
+    <title>Profil Sekolah</title>
 @endsection
 
 @section('head-description')
@@ -23,7 +23,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
             <ol class="breadcrumb">
                 <li class="active">
                     <i class="fa fa-home"></i>
-                    Profile
+                    Profil Sekolah
                 </li>
             </ol>
         </section>
@@ -34,19 +34,19 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
             <div class="box">
                 {!! $form->model($counselor, ['route' => ['counselor.profile.update'], 'method' => 'patch']) !!}
                 <div class="box-header with-border">
-                    <h3 class="box-title">Profile</h3>
+                    <h3 class="box-title">Profil Sekolah</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="school">Sekolah</label>
+                        <label for="school">Nama Sekolah</label>
                         {!! $form->input('text','school', null, ['id'=>'school', 'placeholder' => 'Sekolah', 'required'=> true, 'class'=>'form-control']) !!}
                     </div>
                     <div class="form-group">
-                        <label for="school_head">Kepala Sekolah</label>
+                        <label for="school_head">Nama Kepala Sekolah</label>
                         {!! $form->input('text','school_head', null, ['id'=> 'school_head', 'placeholder' => 'Kepala Sekolah', 'required'=> true, 'class'=>'form-control']) !!}
                     </div>
                     <div class="form-group">
-                        <label for="school_head_credential">NIP/NIK Kepala Sekolah</label>
+                        <label for="school_head_credential">NIP Kepala Sekolah</label>
                         {!! $form->input('text','school_head_credential', null, ['id' => 'school_head_credential', 'placeholder' => 'NIP Kepala Sekolah', 'required'=> true, 'class'=>'form-control']) !!}
                     </div>
                 </div>

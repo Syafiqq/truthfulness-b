@@ -9,7 +9,7 @@ if (!isset($reports))
 $now = \Carbon\Carbon::now();
 ?>
 @section('head-title')
-    <title>Report</title>
+    <title>Hasil Pengisian Siswa</title>
 @endsection
 
 @section('head-description')
@@ -28,7 +28,7 @@ $now = \Carbon\Carbon::now();
             <ol class="breadcrumb">
                 <li class="active">
                     <i class="fa fa-home"></i>
-                    Report
+                    Hasil Pengisian Siswa
                 </li>
             </ol>
         </section>
@@ -38,7 +38,7 @@ $now = \Carbon\Carbon::now();
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Report</h3>
+                    <h3 class="box-title">Hasil Pengisian Siswa</h3>
                 </div>
                 <div class="box-body">
                     <table id="reports" class="table table-bordered table-hover">

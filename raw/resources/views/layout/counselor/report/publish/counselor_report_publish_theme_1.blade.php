@@ -11,7 +11,7 @@ $analytics = $studentAnswer->getResultAnalytics()['1'];
 $now = \Carbon\Carbon::now();
 ?>
 @section('head-title')
-    <title>Cetak</title>
+    <title>Cetak Laporan Hasil Pengisian Inventori</title>
 @endsection
 
 @section('head-description')
@@ -31,7 +31,7 @@ $now = \Carbon\Carbon::now();
                 <li>
                     <a href="{{route('counselor.report.list')}}">
                         <i class="fa fa-home"></i>
-                        Report
+                        Hasil Pengisian Inventori
                     </a>
                 </li>
                 <li>
@@ -42,7 +42,7 @@ $now = \Carbon\Carbon::now();
                 </li>
                 <li class="active">
                     <i class="fa fa-print"></i>
-                    Print
+                    Cetak Hasil
                 </li>
             </ol>
         </section>
@@ -81,7 +81,7 @@ $now = \Carbon\Carbon::now();
                     </div>
                     <div class="row vertical-align">
                         <div class="col-sm-12 text-center">
-                            <p id="content_welcome" class="margin-bottom-4" style="margin-top: 12px;font-weight: bold; font-size: 16px">LAPORAN INVENTORI
+                            <p id="content_welcome" class="margin-bottom-4" style="margin-top: 12px;font-weight: bold; font-size: 16px">LAPORAN INVENTORI NILAI MORAL
                                 <i>TRUTHFULNESS</i>
                                                                                                                                         SISWA SMA
                             </p>
@@ -145,12 +145,14 @@ $now = \Carbon\Carbon::now();
                         </div>
                         <div class="col-sm-10 text-center">
                             <p id="content_welcome" style="font-weight: bold; font-size: 16px; margin: 8px">HASIL ANALISA</p>
-                            <p class="font-size-12px" style="text-align: justify">Berdasarkan pengisian inventori
+                            <p class="font-size-12px" style="text-align: justify">Berdasarkan pengisian inventori nilai moral
                                 <i>Truthfulnesss</i>
                                 <b>{{$student->getAttribute('name')}}</b>
-                                                                                  memiliki tingkat kejujuran
+                                                                                  memiliki tingkat nilai moral
+                                <i>Truthfulnesss</i>
+                                                                                  sebesar
                                 <b>{{sprintf("%.4g%%", $accumulation)}}</b>
-                                                                                  dan termasuk dalam klasifikasi
+                                                                                  dan termasuk dalam kategori
                                 <b>{{array_values(array_filter($analytics, function($analytic) use ($accumulation){
                                     return (($accumulation > doubleval($analytic['guard']['min'])) && ($accumulation <= doubleval($analytic['guard']['max'])));
                                 }))[0]['class']}}</b>
@@ -176,28 +178,26 @@ $now = \Carbon\Carbon::now();
                                 </thead>
                                 <tbody>
                                 @foreach($analytics as $analytic)
-                                    @if (($accumulation > doubleval($analytic['guard']['min'])) && ($accumulation <= doubleval($analytic['guard']['max'])))
-                                        <tr>
-                                            <td class="font-size-12px text-center">
-                                                <strong>{!! $analytic['interval']!!}</strong>
-                                            </td>
-                                            <td class="font-size-12px text-center">
-                                                <strong>{!! $analytic['class']!!}</strong>
-                                            </td>
-                                            <td class="font-size-12px text-left">
-                                                <strong>{!! $analytic['description']['key']!!}</strong>
-                                                <br>
-                                                <strong>{!! $analytic['description']['value']!!}</strong>
-                                            </td>
-                                        </tr>
-                                    @endif
+                                    <tr>
+                                        <td class="font-size-12px text-center">
+                                            <strong>{!! $analytic['interval']!!}</strong>
+                                        </td>
+                                        <td class="font-size-12px text-center">
+                                            <strong>{!! $analytic['class']!!}</strong>
+                                        </td>
+                                        <td class="font-size-12px text-left">
+                                            <strong>{!! $analytic['description']['key']!!}</strong>
+                                            <br>
+                                            <strong>{!! $analytic['description']['value']!!}</strong>
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                             <p class="text-left font-size-12px" style="margin-top: 12px">
-                                {!! sprintf(array_values(array_filter($analytics, function($analytic) use ($accumulation){
+                                {!! str_replace('$$0', $student->getAttribute('name'), array_values(array_filter($analytics, function($analytic) use ($accumulation){
                                     return (($accumulation > doubleval($analytic['guard']['min'])) && ($accumulation <= doubleval($analytic['guard']['max'])));
-                                }))[0]['recommendation'],$student->getAttribute('name'))!!}
+                                }))[0]['recommendation'])!!}
                             </p>
                         </div>
                     </div>
@@ -229,28 +229,35 @@ $now = \Carbon\Carbon::now();
                             <p class="font-size-12px margin-bottom-2">Konselor</p>
                         </div>
                     </div>
+                    <br>
                     <div class="row" style="margin-top: 1.2cm">
                         <div class="col-sm-1 ">
                         </div>
                         <div class="col-sm-4 no-padding-side">
-                            <p class="font-size-12px margin-bottom-2">{{$counselorProfile->getAttribute('school_head')}}</p>
+                            <p class="font-size-12px margin-bottom-2">
+                                <u>{{$counselorProfile->getAttribute('school_head')}}
+                                    <u>
+                            </p>
                         </div>
                         <div class="col-sm-3 ">
                         </div>
                         <div class="col-sm-4 no-padding-side">
-                            <p class="font-size-12px margin-bottom-2">{{$user->getAttribute('name')}}</p>
+                            <p class="font-size-12px margin-bottom-2">
+                                <u>{{$user->getAttribute('name')}}
+                                    <u>
+                            </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-1 ">
                         </div>
                         <div class="col-sm-4 no-padding-side">
-                            <p class="font-size-12px margin-bottom-2">{{$counselorProfile->getAttribute('school_head_credential')}}</p>
+                            <p class="font-size-12px margin-bottom-2">NIP. {{$counselorProfile->getAttribute('school_head_credential')}}</p>
                         </div>
                         <div class="col-sm-3 ">
                         </div>
                         <div class="col-sm-4 no-padding-side">
-                            <p class="font-size-12px margin-bottom-2">{{$user->getAttribute('credential')}}</p>
+                            <p class="font-size-12px margin-bottom-2">NIP. {{$user->getAttribute('credential')}}</p>
                         </div>
                     </div>
                 </div>
@@ -276,6 +283,6 @@ $now = \Carbon\Carbon::now();
     <?php
     $detailPage = route('counselor.student.detail', [$student->getKey()]);
     ?>
-    @include('layout.counselor.extension.navbar.theme_1_navbar', ['pre_right_menu' => "<li><a href=\"$detailPage\"><i class=\"fa fa-arrow-left\"></i></a></li><li><a href=\"\" id=\"print\" ><i class=\"fa fa-print\"></i></a></li>"])
+    @include('layout.counselor.extension.navbar.theme_1_navbar', ['pre_right_menu' => "<li><a href=\"$detailPage\"><i class=\"fa fa-arrow-left\"></i></a></li><li><a href=\"\" id=\"print\" ><i class=\"fa fa-print\"></i>Cetak Laporan Hasil</a></li>"])
 @endsection
 

@@ -2,7 +2,7 @@
     <!-- Logo -->
     <a href="{{route('counselor.home.dashboard')}}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>T</b></span>
+        <span class="logo-mini"><b>Truth</b></span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg"><b>Truthfulness</b></span>
     </a>
@@ -22,17 +22,20 @@
                 <li class="dropdown messages-menu">
                     <a href="{{route('counselor.coupon.generator', ['counselor'])}}">
                         <i class="fa fa-ticket"></i>
+                        Kode Registrasi Baru
                         <span class="label label-success"></span>
                     </a>
                 </li>
                 <li>
                     <a href="" id="music-opener" data-toggle="modal" data-target="#music-modal">
                         <i class="fa fa-music"></i>
+                        Pemutar Musik
                     </a>
                 </li>
                 <li>
                     <a href="{{route('counselor.auth.logout')}}">
                         <i class="fa fa-power-off"></i>
+                        Keluar Aplikasi
                     </a>
                 </li>
             </ul>

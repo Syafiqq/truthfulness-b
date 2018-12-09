@@ -36,7 +36,7 @@ if (!is_null($session->get('cbk_msg')))
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline" data-dismiss="modal">Tutup</button>
                 </div>
             </div>
             <!-- /.modal-content -->

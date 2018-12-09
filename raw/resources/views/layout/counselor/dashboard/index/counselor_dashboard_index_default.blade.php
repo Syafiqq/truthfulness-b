@@ -9,7 +9,7 @@ setlocale(LC_TIME, 'Indonesian');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>Beranda</title>
 </head>
 <body>
 @if (count($errors) > 0)
@@ -28,7 +28,7 @@ setlocale(LC_TIME, 'Indonesian');
     <thead>
     <tr>
         <th>No</th>
-        <th>Kupon</th>
+        <th>Kode Registrasi</th>
         <th>Pembuat</th>
         <th>Tanggal</th>
     </tr>

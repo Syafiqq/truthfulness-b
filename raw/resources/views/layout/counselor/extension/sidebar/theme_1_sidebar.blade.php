@@ -26,14 +26,14 @@ $user = \Illuminate\Support\Facades\Auth::user();
             <li>
                 <a href="{{route('counselor.profile.edit')}}">
                     <i class="fa fa-cog"></i>
-                    <span>Profile</span>
+                    <span>Profil Sekolah</span>
                     <span class="pull-right-container"></span>
                 </a>
             </li>
             <li>
                 <a href="{{route('counselor.report.list')}}">
                     <i class="fa fa-list"></i>
-                    <span>Report</span>
+                    <span>Hasil Inventori</span>
                     <span class="pull-right-container"></span>
                 </a>
             </li>

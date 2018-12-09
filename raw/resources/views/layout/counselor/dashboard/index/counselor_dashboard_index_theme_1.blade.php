@@ -18,7 +18,8 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Selamat Datang
+                Selamat Datang di Halaman Admin Aplikasi Inventori Nilai Moral
+                <i>Truthfulness</i>
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
@@ -143,7 +144,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kupon</th>
+                            <th>Kode Registrasi</th>
                             <th>Pembuat</th>
                             <th>Peruntukan</th>
                             <th>Tanggal</th>
@@ -152,7 +153,7 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                         <tbody>
                         @foreach(/** @var \App\Eloquent\User $user */$coupons as $k => $coupon)
                             <?php
-                            /** @var \App\Eloquent\User $counselor */
+                            /** @var \App\Eloquent\User $student */
                             /** @noinspection PhpUndefinedVariableInspection */
                             $user = $coupon->getAttribute('users');
                             ?>
@@ -168,6 +169,9 @@ $form = \Collective\Html\FormFacade::getFacadeRoot();
                     </table>
                 </div>
                 <!-- /.box-body -->
+                <div class="box-footer">
+                    <h1>&nbsp;</h1>
+                </div>
                 <!-- /.box-footer-->
             </div>
             <!-- /.box -->
